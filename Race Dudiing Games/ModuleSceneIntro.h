@@ -21,6 +21,15 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
+	Cube* CreateElement(Cube* forma, vec3 position, float angle, vec3 axis);
+
+	p2DynArray<Primitive*> primitives;
+
+	p2DynArray<PhysBody3D*> physBodies;
+
+
+
+
 public:
 	/*
 	PhysBody3D* pb_snake[MAX_SNAKE];
