@@ -25,7 +25,44 @@ bool ModuleSceneIntro::Start()
 	sensor_cube->SetAsSensor(true);
 	sensor_cube->SetPos(0, 3, 0);
 
-	CreateElement(new Cube(16, 2, 10), vec3(0, 2, 100), -25, vec3(1, 0, 0));
+	//inici
+	CreateElement(new Cube(20, 1, 60), vec3(0, 1, 20), 0, vec3(1, 0, 0));
+	CreateElement(new Cube(1, 10, 1), vec3(10, 5, 15), 0, vec3(1, 0, 0))->color = Black;
+	CreateElement(new Cube(1, 10, 1), vec3(-10, 5, 15), 0, vec3(1, 0, 0))->color = Black;
+	CreateElement(new Cube(20, 3, 0.8), vec3(0, 8, 15), 0, vec3(1, 0, 0))->color = Green;
+
+	//primera U
+	CreateElement(new Cube(20, 1, 60), vec3(-20, 1, 60), 90, vec3(0, 1, 0));
+	CreateElement(new Cube(20, 1, 40), vec3(-40, 1, 90), 0, vec3(0, 1, 0));
+	CreateElement(new Cube(20, 1, 40), vec3(-10, 1, 100), 90, vec3(0, 1, 0));
+
+	//primera L
+	CreateElement(new Cube(20, 1, 40), vec3(0, 1, 130), 0, vec3(0, 1, 0));
+	CreateElement(new Cube(20, 1, 80), vec3(-50, 1, 140), 90, vec3(0, 1, 0));
+
+
+	//Recta
+	CreateElement(new Cube(20, 1, 160), vec3(-100, 1, 70), 0, vec3(1, 0, 0));
+	
+	//segona L
+	CreateElement(new Cube(20, 1, 80), vec3(-130, 1, -20), 90, vec3(0, 1, 0));
+	CreateElement(new Cube(20, 1, 100), vec3(-180, 1, -60), 0, vec3(1, 0, 0));
+
+	//segona Recta
+	CreateElement(new Cube(20, 1, 300), vec3(-40, 1, -120), 90, vec3(0, 1, 0));
+
+	//tercera L
+	CreateElement(new Cube(20, 1, 80), vec3(120, 1, -90), 0, vec3(1, 0, 0));
+	CreateElement(new Cube(20, 1, 60), vec3(100, 1, -40), 90, vec3(0, 1, 0));
+
+	//quarta L
+	CreateElement(new Cube(20, 1, 60), vec3(60, 1, -20), 0, vec3(1, 0, 0));
+	CreateElement(new Cube(20, 1, 60), vec3(80, 1, 20), 90, vec3(0, 1, 0));
+
+
+	//Recta Final
+	CreateElement(new Cube(20, 1, 120), vec3(60, 1, 90), 0, vec3(1, 0, 0));
+	
 
 	return ret;
 }
