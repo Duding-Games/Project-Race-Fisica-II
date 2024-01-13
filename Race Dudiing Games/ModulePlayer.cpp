@@ -18,6 +18,8 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
+	cameraDirection = Cube();
+
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -137,6 +139,19 @@ update_status ModulePlayer::Update(float dt)
 	{
 		brake = BRAKE_POWER;
 	}
+	
+	vehicle->vehicle->getChassisWorldTransform().getOpenGLMatrix(&cameraDirection.transform);
+	btQuaternion q = vehicle->vehicle->getChassisWorldTransform().getRotation();
+	btVector3 offset(0, 7, -15);
+	offset = offset.rotate(q.getAxis(), q.getAngle());
+
+	cameraDirection.transform.M[12] += offset.getX();
+	cameraDirection.transform.M[13] += offset.getY();
+	cameraDirection.transform.M[14] += offset.getZ();
+
+
+	App->camera->Position = vec3(cameraDirection.transform[12], cameraDirection.transform[13], cameraDirection.transform[14]);
+	App->camera->LookAt(vec3(vehicle->cameraReference.transform[12], vehicle->cameraReference.transform[13], vehicle->cameraReference.transform[14]));
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
