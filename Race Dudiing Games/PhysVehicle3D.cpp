@@ -48,6 +48,18 @@ void PhysVehicle3D::Render()
 	chassis.transform.M[13] += offset.getY();
 	chassis.transform.M[14] += offset.getZ();
 
+	cameraReference = Cube(1.1f, 1.1f, 1.1f);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&cameraReference.transform);
+	cameraReference.color = Blue;
+	btVector3 offset2(0, 2, 3);
+	offset2 = offset2.rotate(q.getAxis(), q.getAngle());
+
+	cameraReference.transform.M[12] += offset2.getX();
+	cameraReference.transform.M[13] += offset2.getY();
+	cameraReference.transform.M[14] += offset2.getZ();
+
+	cameraReference.Render();
+
 
 	chassis.Render();
 }

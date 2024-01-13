@@ -1,6 +1,10 @@
 #pragma once
 
 #include "PhysBody3D.h"
+#include "Primitive.h"
+#include "Module.h"
+#include "Globals.h"
+#include "p2point.h"
 #include "glmath.h"
 
 class btRaycastVehicle;
@@ -54,4 +58,5 @@ public:
 
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
+	Cube cameraReference;
 };
