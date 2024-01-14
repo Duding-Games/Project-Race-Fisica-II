@@ -128,7 +128,7 @@ bool ModuleSceneIntro::Start()
 	CreateElement(new Cube(1, 10, 30), vec3(120, 1, 165), 0, vec3(1, 0, 0));
 	CreateElement(new Cube(1, 10, 30), vec3(80, 1, 165), 0, vec3(1, 0, 0));
 	
-	//Cadena Esferas
+	//Cadena Esferas 1
 	const int SnakeLength = 7;
 	const float BallDistance = 0.3f;
 	float XPos = 0.0f;
@@ -152,6 +152,51 @@ bool ModuleSceneIntro::Start()
 
 		XPos += Size + BallDistance;
 	}
+
+	//Cadena Esferas 2
+	XPos = 0.0f;
+	YPos = 15.5f;
+	ZPos = 40.0f;
+	prevSphere = nullptr;
+	s = nullptr;
+	for (int n = 0; n < SnakeLength; n++) {
+		vec3 position = vec3(XPos, YPos, ZPos);
+		if (prevSphere == nullptr) s = CreateSphere(new Sphere(1.0f), position, 0.0f);
+		else s = CreateSphere(new Sphere(1.0f), position, 100.0f);
+
+		if (prevSphere != nullptr) {
+			vec3 anchorA = vec3(0.0f, Size, 0.0f);
+			vec3 anchorB = vec3(0.0f, -Size, 0.0f);
+
+			App->physics->AddConstraintP2P(*s->phys, *prevSphere->phys, anchorA, anchorB);
+		}
+		prevSphere = s;
+
+		XPos -= Size - BallDistance;
+	}
+
+	//Cadena Esferas 3
+	XPos = 0.0f;
+	YPos = 15.5f;
+	ZPos = 30.0f;
+	prevSphere = nullptr;
+	s = nullptr;
+	for (int n = 0; n < SnakeLength; n++) {
+		vec3 position = vec3(XPos, YPos, ZPos);
+		if (prevSphere == nullptr) s = CreateSphere(new Sphere(1.0f), position, 0.0f);
+		else s = CreateSphere(new Sphere(1.0f), position, 100.0f);
+
+		if (prevSphere != nullptr) {
+			vec3 anchorA = vec3(0.0f, Size, 0.0f);
+			vec3 anchorB = vec3(0.0f, -Size, 0.0f);
+
+			App->physics->AddConstraintP2P(*s->phys, *prevSphere->phys, anchorA, anchorB);
+		}
+		prevSphere = s;
+
+		XPos += Size + BallDistance;
+	}
+
 	return ret;
 }
 
