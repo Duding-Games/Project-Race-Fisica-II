@@ -128,7 +128,7 @@ update_status ModulePlayer::Update(float dt)
 		vehicle->body->setGravity(btVector3(0, gravity, 0));
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
 		vehicle->body->setGravity(btVector3(0, 0, 0));
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
