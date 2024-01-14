@@ -53,6 +53,10 @@ bool ModuleSceneIntro::Start()
 	muddy_area->SetAsSensor(true);
 	muddy_area->SetPos(80, 5, 20);
 
+	//death zone
+	death_zone = App->physics->AddBody(Cube(500, 1, 500), 0.0f, true);
+	death_zone->SetPos(0, 0, 0);
+
 	//inici
 	CreateElement(new Cube(20, 1, 60), vec3(0, 1, 20), 0, vec3(1, 0, 0));
 	CreateElement(new Cube(1, 10, 1), vec3(10, 5, 15), 0, vec3(1, 0, 0))->color = Black;

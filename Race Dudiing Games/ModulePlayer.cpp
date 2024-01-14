@@ -203,4 +203,5 @@ void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 	if (body1 == App->scene_intro->muddy_area) vehicle->info.frictionSlip = 0.8f;
 	if (body2 == App->scene_intro->muddy_area) vehicle->info.frictionSlip = 0.8f;
+	
 }
