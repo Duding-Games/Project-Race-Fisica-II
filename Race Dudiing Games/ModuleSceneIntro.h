@@ -58,6 +58,6 @@ public:
 	PhysBody3D* frozen_area;
 	PhysBody3D* muddy_area;
 	PhysBody3D* death_zone;
-	Cube* floor;
+	PhysBody3D* floor;
 
 };
