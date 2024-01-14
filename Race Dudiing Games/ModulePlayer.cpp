@@ -24,6 +24,7 @@ bool ModulePlayer::Start()
 
 	VehicleInfo car;
 
+	gravity = -10;
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(2, 2, 4);
 	car.chassis_offset.Set(0, 1.5, 0);
@@ -118,6 +119,13 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN) {
+		gravity += 0.5f;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
+		gravity -= 0.5f;
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN) {
 		ogFriction += 0.5f;
 	}

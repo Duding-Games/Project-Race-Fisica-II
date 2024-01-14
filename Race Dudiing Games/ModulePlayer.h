@@ -30,4 +30,5 @@ public:
 	Cube cameraDirection;
 	float ogFriction = 2.0f;
 	float ogMass = 500.0f;
+	float gravity = -10;
 };
