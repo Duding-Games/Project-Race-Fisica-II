@@ -54,9 +54,11 @@ public:
 	void Brake(float force);
 	void Turn(float degrees);
 	float GetKmh() const;
+	float* SetVehicleRotation(float angle, const vec3& u);
 public:
 
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
 	Cube cameraReference;
+	mat4x4 transform;
 };

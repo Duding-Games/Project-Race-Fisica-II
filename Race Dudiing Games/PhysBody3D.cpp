@@ -1,4 +1,5 @@
 #include "PhysBody3D.h"
+#include "PhysVehicle3D.h"
 #include "glmath.h"
 #include "Bullet/include/btBulletDynamicsCommon.h"
 
@@ -62,3 +63,4 @@ void PhysBody3D::SetAsSensor(bool is_sensor)
 			body->setCollisionFlags(body->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
 	}
 }
+

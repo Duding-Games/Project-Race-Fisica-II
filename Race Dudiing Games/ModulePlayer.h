@@ -28,4 +28,5 @@ public:
 	float acceleration;
 	float brake;
 	Cube cameraDirection;
+	float ogFriction;
 };
