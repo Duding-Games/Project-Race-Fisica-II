@@ -47,15 +47,19 @@ bool ModuleSceneIntro::Start()
 	muddy_area = App->physics->AddBody(Cube(20, 5, 80), 0.0);
 	muddy_area->SetAsSensor(true);
 	muddy_area->SetPos(120, 5, -90);
+	muddy_area->id = 3;
 	muddy_area = App->physics->AddBody(Cube(60, 5, 20), 0.0);
 	muddy_area->SetAsSensor(true);
 	muddy_area->SetPos(100, 5, -40);
+	muddy_area->id = 3;
 	muddy_area = App->physics->AddBody(Cube(20, 5, 60), 0.0);
 	muddy_area->SetAsSensor(true);
 	muddy_area->SetPos(60, 5, -20);
+	muddy_area->id = 3;
 	muddy_area = App->physics->AddBody(Cube(60, 5, 20), 0.0);
 	muddy_area->SetAsSensor(true);
 	muddy_area->SetPos(80, 5, 20);
+	muddy_area->id = 3;
 
 	//death zone
 	death_zone = App->physics->AddBody(Cube(500, 1, 500), 0.0f, true);
@@ -135,7 +139,23 @@ bool ModuleSceneIntro::Start()
 	CreateElement(new Cube(40, 10, 1), vec3(100, 1, 180), 0, vec3(1, 0, 0));
 	CreateElement(new Cube(1, 10, 30), vec3(120, 1, 165), 0, vec3(1, 0, 0));
 	CreateElement(new Cube(1, 10, 30), vec3(80, 1, 165), 0, vec3(1, 0, 0));
+
+	// Floor sensor
+	floor = App->physics->AddBody(Cube(20, 1, 60), 0.0);
+	floor->SetAsSensor(true);
+	floor->SetPos(0, 3, 20);
+	floor->id = 1;
 	
+	floor = App->physics->AddBody(Cube(20, 1, 160), 0.0);
+	floor->SetAsSensor(true);
+	floor->SetPos(-100, 3, 70);
+	floor->id = 1;
+
+	floor = App->physics->AddBody(Cube(20, 1, 120), 0.0);
+	floor->SetAsSensor(true);
+	floor->SetPos(1100, 3, 90);
+	floor->id = 1;
+
 	//Cadena Esferas 1
 	const int SnakeLength = 7;
 	const float BallDistance = 0.3f;
