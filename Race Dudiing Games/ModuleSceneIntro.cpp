@@ -47,15 +47,19 @@ bool ModuleSceneIntro::Start()
 	muddy_area = App->physics->AddBody(Cube(20, 5, 80), 0.0);
 	muddy_area->SetAsSensor(true);
 	muddy_area->SetPos(120, 5, -90);
+	muddy_area->id = 3;
 	muddy_area = App->physics->AddBody(Cube(60, 5, 20), 0.0);
 	muddy_area->SetAsSensor(true);
 	muddy_area->SetPos(100, 5, -40);
+	muddy_area->id = 3;
 	muddy_area = App->physics->AddBody(Cube(20, 5, 60), 0.0);
 	muddy_area->SetAsSensor(true);
 	muddy_area->SetPos(60, 5, -20);
+	muddy_area->id = 3;
 	muddy_area = App->physics->AddBody(Cube(60, 5, 20), 0.0);
 	muddy_area->SetAsSensor(true);
 	muddy_area->SetPos(80, 5, 20);
+	muddy_area->id = 3;
 
 	//death zone
 	death_zone = App->physics->AddBody(Cube(500, 1, 500), 0.0f, true);
