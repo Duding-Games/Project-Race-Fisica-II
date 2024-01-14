@@ -28,15 +28,19 @@ bool ModuleSceneIntro::Start()
 	// Frozen area
 	frozen_area = App->physics->AddBody(Cube(20, 5, 40), 0.0);
 	frozen_area->SetAsSensor(true);
+	frozen_area->id = 2;
 	frozen_area->SetPos(-40, 5, 90);
 	frozen_area = App->physics->AddBody(Cube(40, 5, 20), 0.0);
 	frozen_area->SetAsSensor(true);
+	frozen_area->id = 2;
 	frozen_area->SetPos(-10, 5, 100);
 	frozen_area = App->physics->AddBody(Cube(20, 5, 40), 0.0);
 	frozen_area->SetAsSensor(true);
+	frozen_area->id = 2;
 	frozen_area->SetPos(0, 5, 130);
 	frozen_area = App->physics->AddBody(Cube(80, 5, 20), 0.0);
 	frozen_area->SetAsSensor(true);
+	frozen_area->id = 2;
 	frozen_area->SetPos(-50, 5, 140);
 
 	// Muddy area

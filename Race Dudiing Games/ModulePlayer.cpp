@@ -220,11 +220,47 @@ void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	if (body1 == App->scene_intro->sensor_cube)	body1->SetPos(20 * rand() / RAND_MAX, 3, 20 * rand() / RAND_MAX);
 	if (body2 == App->scene_intro->sensor_cube)	body2->SetPos(20 * rand() / RAND_MAX, 3, 20 * rand() / RAND_MAX);
 
-	if (body1 == App->scene_intro->frozen_area) vehicle->info.frictionSlip = 1000.0f;
+	/*if (body1 == App->scene_intro->frozen_area) vehicle->info.frictionSlip = 1000.0f;
 	if (body2 == App->scene_intro->frozen_area) vehicle->info.frictionSlip = 1000.0f;
 
 	if (body1 == App->scene_intro->muddy_area) vehicle->info.frictionSlip = 0.8f;
-	if (body2 == App->scene_intro->muddy_area) vehicle->info.frictionSlip = 0.8f;
+	if (body2 == App->scene_intro->muddy_area) vehicle->info.frictionSlip = 0.8f;*/
+
+	//SUELO NORMAL
+	if (body2->id == 1) {
+		int Wheels = vehicle->info.num_wheels;
+
+		// Itera sobre cada rueda y ajusta la fricción
+		for (int i = 0; i < Wheels; ++i) {
+			btWheelInfo& wheel = vehicle->vehicle->getWheelInfo(i);
+			wheel.m_frictionSlip = ogFriction;
+			vehicle->vehicle->updateWheelTransform(i);
+		}
+	}
+	 //HIELO
+	if (body2->id == 2) {
+		int Wheels = vehicle->info.num_wheels;
+
+		// Itera sobre cada rueda y ajusta la fricción
+		for (int i = 0; i < Wheels; ++i) {
+			btWheelInfo& wheel = vehicle->vehicle->getWheelInfo(i);
+			wheel.m_frictionSlip = 0.8f;
+			vehicle->vehicle->updateWheelTransform(i);
+		}
+	}
+
+	// BARRO (creo)
+	if (body2->id == 3) {
+		int Wheels = vehicle->info.num_wheels;
+
+		// Itera sobre cada rueda y ajusta la fricción
+		for (int i = 0; i < Wheels; ++i) {
+			btWheelInfo& wheel = vehicle->vehicle->getWheelInfo(i);
+			wheel.m_frictionSlip = 5.0f;
+			vehicle->vehicle->updateWheelTransform(i);
+		}
+	}
+
 
 	if (body2 == App->scene_intro->death_zone) {
 
