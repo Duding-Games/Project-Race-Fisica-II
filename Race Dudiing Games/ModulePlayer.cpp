@@ -118,7 +118,43 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+
+	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT) {
+		btRigidBody* rbCar = vehicle->vehicle->getRigidBody();
+		ogMass += 10;
+
+		btVector3 inertia;
+		rbCar->getCollisionShape()->calculateLocalInertia(ogMass, inertia);
+		rbCar->setMassProps(ogMass, inertia);
+		rbCar->updateInertiaTensor();
+
+		int numWheels = vehicle->info.num_wheels;
+		for (int i = 0; i < numWheels; ++i) {
+			vehicle->vehicle->updateWheelTransform(i);
+		}
+		LOG("VEHICLE MASS %f", ogMass);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT && ogMass != 1) {
+		btRigidBody* rbCar = vehicle->vehicle->getRigidBody();
+		ogMass -= 10;
+		if (ogMass <= 0) {
+			ogMass = 1;
+		}
+		btVector3 inertia;
+		rbCar->getCollisionShape()->calculateLocalInertia(ogMass, inertia);
+		rbCar->setMassProps(ogMass, inertia);
+		rbCar->updateInertiaTensor();
+
+		int numWheels = vehicle->info.num_wheels;
+		for (int i = 0; i < numWheels; ++i) {
+			vehicle->vehicle->updateWheelTransform(i);
+		}
+		LOG("VEHICLE MASS %f", ogMass);
+
+	}
 	turn = acceleration = brake = 0.0f;
+
+	
 
 	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{

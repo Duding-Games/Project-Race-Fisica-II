@@ -29,4 +29,5 @@ public:
 	float brake;
 	Cube cameraDirection;
 	float ogFriction = 2.0f;
+	float ogMass = 500.0f;
 };
