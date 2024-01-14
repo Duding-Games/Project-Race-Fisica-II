@@ -81,22 +81,26 @@ bool ModuleSceneIntro::Start()
 	CreateElement(new Cube(40, 1, 30), vec3(100, 1, 165), 0, vec3(1, 0, 0));
 	
 	//Cadena Esferas
-	const int SnakeLength = 2;
+	const int SnakeLength = 7;
 	const float BallDistance = 0.3f;
 	float XPos = 0.0f;
+	float YPos = 15.5f;
+	float ZPos = 50.0f;
 	float Size = 1.0f;
 	Sphere* prevSphere = nullptr;
+	Sphere* s = nullptr;
 	for (int n = 0; n < SnakeLength; n++) {
-		Sphere* s = new Sphere(Size);
-		primitives.PushBack(s);
-		s->SetPos(XPos, 10.f, 2.5f);
+		vec3 position = vec3(XPos, YPos, ZPos);
+		if(prevSphere == nullptr) s = CreateSphere(new Sphere(1.0f), position, 0.0f);
+		else s = CreateSphere(new Sphere(1.0f), position, 100.0f);
 
 		if (prevSphere != nullptr) {
-			vec3 anchorA = vec3(-Size / 2.0f, 0.0f, 0.0f);
-			vec3 anchorB = vec3(Size / 2.0f, 0.0f, 0.0f);
+			vec3 anchorA = vec3(0.0f, Size, 0.0f);
+			vec3 anchorB = vec3(0.0f, -Size, 0.0f);
 
 			App->physics->AddConstraintP2P(*s->phys, *prevSphere->phys, anchorA, anchorB);
 		}
+		prevSphere = s;
 
 		XPos += Size + BallDistance;
 	}
@@ -117,6 +121,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
+
+	for (uint n = 0; n < primitives.Count(); n++)
+		primitives[n]->Update();
 
 	for (int i = 0; i < primitives.Count(); i++) {
 		(**primitives.At(i)).Render();
@@ -148,6 +155,21 @@ Cube* ModuleSceneIntro::CreateElement(Cube* forma, vec3 position, float angle, v
 	return forma;
 }
 
+Sphere* ModuleSceneIntro::CreateSphere(Sphere* forma, vec3 position, float mass)
+{
+	PhysBody3D* physBody;
 
+	forma->SetPos(position.x, position.y, position.z);
+	physBody = App->physics->AddBody(*forma, mass);
+
+	forma->phys = physBody;
+
+
+	primitives.PushBack(forma);
+	physBodies.PushBack(physBody);
+
+
+	return forma;
+}
 
 
