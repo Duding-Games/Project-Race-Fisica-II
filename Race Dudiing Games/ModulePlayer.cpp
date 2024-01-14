@@ -118,6 +118,23 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN) {
+		ogFriction += 0.5f;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
+		ogFriction -= 0.5f;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_UP || App->input->GetKey(SDL_SCANCODE_C) == KEY_UP) {
+		int Wheels = vehicle->info.num_wheels;
+
+		for (int i = 0; i < Wheels; ++i) {
+			btWheelInfo& wheel = vehicle->vehicle->getWheelInfo(i);
+			wheel.m_frictionSlip = ogFriction;
+			vehicle->vehicle->updateWheelTransform(i);
+		}
+		LOG("FRICTION: %f", ogFriction);
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT) {
 		btRigidBody* rbCar = vehicle->vehicle->getRigidBody();
@@ -206,13 +223,7 @@ update_status ModulePlayer::Update(float dt)
 
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN) {
-		SetWheelFriction(1000.0f);
-	}
 
-	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
-		SetWheelFriction(1.0f);
-	}
 
 	vehicle->vehicle->getChassisWorldTransform().getOpenGLMatrix(&cameraDirection.transform);
 	btQuaternion q = vehicle->vehicle->getChassisWorldTransform().getRotation();
