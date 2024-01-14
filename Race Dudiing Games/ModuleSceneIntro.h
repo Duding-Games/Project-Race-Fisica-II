@@ -23,6 +23,8 @@ public:
 
 	Cube* CreateElement(Cube* forma, vec3 position, float angle, vec3 axis);
 
+	Sphere* CreateSphere(Sphere* forma, vec3 position, float mass);
+
 	p2DynArray<Primitive*> primitives;
 
 	p2DynArray<PhysBody3D*> physBodies;
