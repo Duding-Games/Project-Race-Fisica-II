@@ -25,6 +25,34 @@ bool ModuleSceneIntro::Start()
 	sensor_cube->SetAsSensor(true);
 	sensor_cube->SetPos(0, 3, 0);
 
+	// Frozen area
+	frozen_area = App->physics->AddBody(Cube(20, 5, 40), 0.0);
+	frozen_area->SetAsSensor(true);
+	frozen_area->SetPos(-40, 5, 90);
+	frozen_area = App->physics->AddBody(Cube(40, 5, 20), 0.0);
+	frozen_area->SetAsSensor(true);
+	frozen_area->SetPos(-10, 5, 100);
+	frozen_area = App->physics->AddBody(Cube(20, 5, 40), 0.0);
+	frozen_area->SetAsSensor(true);
+	frozen_area->SetPos(0, 5, 130);
+	frozen_area = App->physics->AddBody(Cube(80, 5, 20), 0.0);
+	frozen_area->SetAsSensor(true);
+	frozen_area->SetPos(-50, 5, 140);
+
+	// Muddy area
+	muddy_area = App->physics->AddBody(Cube(20, 5, 80), 0.0);
+	muddy_area->SetAsSensor(true);
+	muddy_area->SetPos(120, 5, -90);
+	muddy_area = App->physics->AddBody(Cube(60, 5, 20), 0.0);
+	muddy_area->SetAsSensor(true);
+	muddy_area->SetPos(100, 5, -40);
+	muddy_area = App->physics->AddBody(Cube(20, 5, 60), 0.0);
+	muddy_area->SetAsSensor(true);
+	muddy_area->SetPos(60, 5, -20);
+	muddy_area = App->physics->AddBody(Cube(60, 5, 20), 0.0);
+	muddy_area->SetAsSensor(true);
+	muddy_area->SetPos(80, 5, 20);
+
 	//inici
 	CreateElement(new Cube(20, 1, 60), vec3(0, 1, 20), 0, vec3(1, 0, 0));
 	CreateElement(new Cube(1, 10, 1), vec3(10, 5, 15), 0, vec3(1, 0, 0))->color = Black;
@@ -34,12 +62,12 @@ bool ModuleSceneIntro::Start()
 
 	//primera U
 	CreateElement(new Cube(20, 1, 60), vec3(-20, 1, 60), 90, vec3(0, 1, 0));
-	CreateElement(new Cube(20, 1, 40), vec3(-40, 1, 90), 0, vec3(0, 1, 0));
-	CreateElement(new Cube(20, 1, 40), vec3(-10, 1, 100), 90, vec3(0, 1, 0));
+	CreateElement(new Cube(20, 1, 40), vec3(-40, 1, 90), 0, vec3(0, 1, 0))->color = LightBlue;
+	CreateElement(new Cube(20, 1, 40), vec3(-10, 1, 100), 90, vec3(0, 1, 0))->color = LightBlue;
 
 	//primera L
-	CreateElement(new Cube(20, 1, 40), vec3(0, 1, 130), 0, vec3(0, 1, 0));
-	CreateElement(new Cube(20, 1, 80), vec3(-50, 1, 140), 90, vec3(0, 1, 0));
+	CreateElement(new Cube(20, 1, 40), vec3(0, 1, 130), 0, vec3(0, 1, 0))->color = LightBlue;
+	CreateElement(new Cube(20, 1, 80), vec3(-50, 1, 140), 90, vec3(0, 1, 0))->color = LightBlue;
 
 
 	//Recta
@@ -63,12 +91,12 @@ bool ModuleSceneIntro::Start()
 	CreateElement(new Cube(20, 1, 300), vec3(-40, 1, -120), 90, vec3(0, 1, 0));
 
 	//tercera L
-	CreateElement(new Cube(20, 1, 80), vec3(120, 1, -90), 0, vec3(1, 0, 0));
-	CreateElement(new Cube(20, 1, 60), vec3(100, 1, -40), 90, vec3(0, 1, 0));
+	CreateElement(new Cube(20, 1, 80), vec3(120, 1, -90), 0, vec3(1, 0, 0))->color = Brown;
+	CreateElement(new Cube(20, 1, 60), vec3(100, 1, -40), 90, vec3(0, 1, 0))->color = Brown;
 
 	//quarta L
-	CreateElement(new Cube(20, 1, 60), vec3(60, 1, -20), 0, vec3(1, 0, 0));
-	CreateElement(new Cube(20, 1, 60), vec3(80, 1, 20), 90, vec3(0, 1, 0));
+	CreateElement(new Cube(20, 1, 60), vec3(60, 1, -20), 0, vec3(1, 0, 0))->color = Brown;
+	CreateElement(new Cube(20, 1, 60), vec3(80, 1, 20), 90, vec3(0, 1, 0))->color = Brown;
 
 
 	//Recta Final

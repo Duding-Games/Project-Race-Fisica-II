@@ -4,6 +4,7 @@
 #include "Primitive.h"
 #include "PhysVehicle3D.h"
 #include "PhysBody3D.h"
+#include "ModuleSceneIntro.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
@@ -140,6 +141,14 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 	}
 	
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN) {
+		SetWheelFriction(1000.0f);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
+		SetWheelFriction(1.0f);
+	}
+
 	vehicle->vehicle->getChassisWorldTransform().getOpenGLMatrix(&cameraDirection.transform);
 	btQuaternion q = vehicle->vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset(0, 7, -15);
@@ -166,11 +175,25 @@ update_status ModulePlayer::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
+void ModulePlayer::SetWheelFriction(float friction) {
+	// Actualiza la friccion de cada rueda del vehiculo
+	for (int i = 0; i < vehicle->vehicle->getNumWheels(); ++i) {
+		btWheelInfo& wheel = vehicle->vehicle->getWheelInfo(i);
+		wheel.m_frictionSlip = friction;
+	}
+
+	vehicle->info.frictionSlip = friction;
+}
 
 void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	// Randomly teleport the sensor cube around 1st quadrant
 	if (body1 == App->scene_intro->sensor_cube)	body1->SetPos(20 * rand() / RAND_MAX, 3, 20 * rand() / RAND_MAX);
 	if (body2 == App->scene_intro->sensor_cube)	body2->SetPos(20 * rand() / RAND_MAX, 3, 20 * rand() / RAND_MAX);
-}
 
+	if (body1 == App->scene_intro->frozen_area) vehicle->info.frictionSlip = 1000.0f;
+	if (body2 == App->scene_intro->frozen_area) vehicle->info.frictionSlip = 1000.0f;
+
+	if (body1 == App->scene_intro->muddy_area) vehicle->info.frictionSlip = 0.8f;
+	if (body2 == App->scene_intro->muddy_area) vehicle->info.frictionSlip = 0.8f;
+}

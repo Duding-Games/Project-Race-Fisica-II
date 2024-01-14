@@ -55,4 +55,7 @@ public:
 
 
 	PhysBody3D* sensor_cube;
+	PhysBody3D* frozen_area;
+	PhysBody3D* muddy_area;
+
 };
