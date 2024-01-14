@@ -121,6 +121,9 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
+		if (acceleration <= -1.0f) {
+			brake = BRAKE_POWER;
+		}
 		acceleration = MAX_ACCELERATION;
 	}
 
@@ -138,7 +141,11 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		brake = BRAKE_POWER;
+		if (acceleration >= 1.0f) {
+			brake = BRAKE_POWER;
+		}
+		acceleration = - MAX_ACCELERATION;
+
 	}
 	
 	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN) {
