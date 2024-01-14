@@ -1,7 +1,7 @@
 # Project-Race-Fisica-II
 Creating a track and a car with Bullet 3D for our Physics II Final Project
 
-Link to the project:
+Link to the Release: https://github.com/Duding-Games/Project-Race-Fisica-II/releases/tag/Release
 
 Team members:
 - Núria Casé
