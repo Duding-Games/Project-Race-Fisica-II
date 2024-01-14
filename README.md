@@ -19,4 +19,9 @@ Reach de finish line to win! If you fall off the trak or your vehicle turns down
 - Left Arrow: Turn Left
 - Right Arrow: Turn Right
 - L Key: Reset Level
-- 
+- M Key: Increase vehicle mass
+- N Key: Decrease vehicle mass
+- J Key: Increase gravity force
+- H Key: Decrease gravity force
+- F2 Key: Enable gravity force
+- F3 Key: Disable Gravity Force
