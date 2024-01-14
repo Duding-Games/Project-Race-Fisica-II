@@ -30,6 +30,7 @@ bool ModuleSceneIntro::Start()
 	CreateElement(new Cube(1, 10, 1), vec3(10, 5, 15), 0, vec3(1, 0, 0))->color = Black;
 	CreateElement(new Cube(1, 10, 1), vec3(-10, 5, 15), 0, vec3(1, 0, 0))->color = Black;
 	CreateElement(new Cube(20, 3, 0.8), vec3(0, 8, 15), 0, vec3(1, 0, 0))->color = Green;
+	CreateElement(new Cube(16, 2, 10), vec3(0, 2, 70), -25, vec3(1, 0, 0)); //Rampa
 
 	//primera U
 	CreateElement(new Cube(20, 1, 60), vec3(-20, 1, 60), 90, vec3(0, 1, 0));
@@ -43,10 +44,20 @@ bool ModuleSceneIntro::Start()
 
 	//Recta
 	CreateElement(new Cube(20, 1, 160), vec3(-100, 1, 70), 0, vec3(1, 0, 0));
+	CreateElement(new Cube(10, 10, 1), vec3(-105, 1, 70), 0, vec3(1, 0, 0)); //paret
+	CreateElement(new Cube(10, 10, 1), vec3(-95, 1, 55), 0, vec3(1, 0, 0)); //paret
+	CreateElement(new Cube(10, 10, 1), vec3(-105, 1, 40), 0, vec3(1, 0, 0)); //paret
+
 	
 	//segona L
 	CreateElement(new Cube(20, 1, 80), vec3(-130, 1, -20), 90, vec3(0, 1, 0));
 	CreateElement(new Cube(20, 1, 100), vec3(-180, 1, -60), 0, vec3(1, 0, 0));
+	CreateElement(new Cube(2, 10, 2), vec3(-180, 1, -60), 0, vec3(1, 0, 0)); //biga
+	CreateElement(new Cube(2, 10, 2), vec3(-175, 1, -70), 0, vec3(1, 0, 0)); //biga
+	CreateElement(new Cube(2, 10, 2), vec3(-185, 1, -80), 0, vec3(1, 0, 0)); //biga
+	CreateElement(new Cube(2, 10, 2), vec3(-185, 1, -50), 0, vec3(1, 0, 0)); //biga
+	CreateElement(new Cube(2, 10, 2), vec3(-180, 1, -40), 0, vec3(1, 0, 0)); //biga
+	CreateElement(new Cube(2, 10, 2), vec3(-175, 1, -30), 0, vec3(1, 0, 0)); //biga
 
 	//segona Recta
 	CreateElement(new Cube(20, 1, 300), vec3(-40, 1, -120), 90, vec3(0, 1, 0));
@@ -61,7 +72,13 @@ bool ModuleSceneIntro::Start()
 
 
 	//Recta Final
-	CreateElement(new Cube(20, 1, 120), vec3(60, 1, 90), 0, vec3(1, 0, 0));
+	CreateElement(new Cube(20, 1, 120), vec3(100, 1, 90), 0, vec3(1, 0, 0));
+
+	//meta
+	CreateElement(new Cube(1, 10, 1), vec3(110, 5, 145), 0, vec3(1, 0, 0))->color = Black;
+	CreateElement(new Cube(1, 10, 1), vec3(90, 5, 145), 0, vec3(1, 0, 0))->color = Black;
+	CreateElement(new Cube(20, 3, 0.8), vec3(100, 8, 145), 0, vec3(1, 0, 0))->color = Red;
+	CreateElement(new Cube(40, 1, 30), vec3(100, 1, 165), 0, vec3(1, 0, 0));
 	
 	//Cadena Esferas
 	const int SnakeLength = 2;
