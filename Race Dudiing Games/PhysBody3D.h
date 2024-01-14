@@ -14,6 +14,8 @@ public:
 	PhysBody3D(btRigidBody* body);
 	~PhysBody3D();
 
+	btRigidBody* GetBody() const;
+
 	void Push(float x, float y, float z);
 	void GetTransform(float* matrix) const;
 	void SetTransform(const float* matrix) const;
@@ -21,7 +23,7 @@ public:
 	void SetAsSensor(bool is_sensor);
 
 private:
-	btRigidBody* body = nullptr;
+	btRigidBody* body;
 
 public:
 	p2List<Module*> collision_listeners;

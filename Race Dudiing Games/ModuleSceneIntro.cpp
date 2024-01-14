@@ -63,7 +63,26 @@ bool ModuleSceneIntro::Start()
 	//Recta Final
 	CreateElement(new Cube(20, 1, 120), vec3(60, 1, 90), 0, vec3(1, 0, 0));
 	
+	//Cadena Esferas
+	const int SnakeLength = 2;
+	const float BallDistance = 0.3f;
+	float XPos = 0.0f;
+	float Size = 1.0f;
+	Sphere* prevSphere = nullptr;
+	for (int n = 0; n < SnakeLength; n++) {
+		Sphere* s = new Sphere(Size);
+		primitives.PushBack(s);
+		s->SetPos(XPos, 10.f, 2.5f);
 
+		if (prevSphere != nullptr) {
+			vec3 anchorA = vec3(-Size / 2.0f, 0.0f, 0.0f);
+			vec3 anchorB = vec3(Size / 2.0f, 0.0f, 0.0f);
+
+			App->physics->AddConstraintP2P(*s->phys, *prevSphere->phys, anchorA, anchorB);
+		}
+
+		XPos += Size + BallDistance;
+	}
 	return ret;
 }
 

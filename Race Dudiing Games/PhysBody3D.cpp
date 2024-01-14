@@ -12,6 +12,11 @@ PhysBody3D::~PhysBody3D()
 	delete body;
 }
 
+btRigidBody* PhysBody3D::GetBody() const
+{
+	return body;
+}
+
 // ---------------------------------------------------------
 void PhysBody3D::Push(float x, float y, float z)
 {

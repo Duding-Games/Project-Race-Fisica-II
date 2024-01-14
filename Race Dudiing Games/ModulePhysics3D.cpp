@@ -340,8 +340,8 @@ PhysVehicle3D* ModulePhysics3D::AddVehicle(const VehicleInfo& info)
 void ModulePhysics3D::AddConstraintP2P(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec3& anchorA, const vec3& anchorB)
 {
 	btTypedConstraint* p2p = new btPoint2PointConstraint(
-		*(bodyA.body), 
-		*(bodyB.body), 
+		*(bodyA.GetBody()), 
+		*(bodyB.GetBody()), 
 		btVector3(anchorA.x, anchorA.y, anchorA.z), 
 		btVector3(anchorB.x, anchorB.y, anchorB.z));
 	world->addConstraint(p2p);
