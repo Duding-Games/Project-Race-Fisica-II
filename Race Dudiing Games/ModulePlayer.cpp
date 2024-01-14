@@ -121,9 +121,11 @@ update_status ModulePlayer::Update(float dt)
 {
 	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN) {
 		gravity += 0.5f;
+		vehicle->body->setGravity(btVector3(0, gravity, 0));
 	}
 	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
 		gravity -= 0.5f;
+		vehicle->body->setGravity(btVector3(0, gravity, 0));
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN) {
