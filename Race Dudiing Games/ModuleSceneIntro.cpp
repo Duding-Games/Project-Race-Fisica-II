@@ -64,22 +64,22 @@ bool ModuleSceneIntro::Start()
 	CreateElement(new Cube(20, 1, 120), vec3(60, 1, 90), 0, vec3(1, 0, 0));
 	
 	//Cadena Esferas
-	//CreateSphere(new Sphere(1.0f), vec3(0, 10, 30), 1.0f);
-	
-	const int SnakeLength = 5;
+	const int SnakeLength = 7;
 	const float BallDistance = 0.3f;
 	float XPos = 0.0f;
-	float YPos = 10.0f;
-	float ZPos = 30.0f;
+	float YPos = 15.5f;
+	float ZPos = 50.0f;
 	float Size = 1.0f;
 	Sphere* prevSphere = nullptr;
+	Sphere* s = nullptr;
 	for (int n = 0; n < SnakeLength; n++) {
 		vec3 position = vec3(XPos, YPos, ZPos);
-		Sphere* s = CreateSphere(new Sphere(1.0f), position, 1.0f);
+		if(prevSphere == nullptr) s = CreateSphere(new Sphere(1.0f), position, 0.0f);
+		else s = CreateSphere(new Sphere(1.0f), position, 100.0f);
 
 		if (prevSphere != nullptr) {
-			vec3 anchorA = vec3(-Size, 0.0f, 0.0f);
-			vec3 anchorB = vec3(Size, 0.0f, 0.0f);
+			vec3 anchorA = vec3(0.0f, Size, 0.0f);
+			vec3 anchorB = vec3(0.0f, -Size, 0.0f);
 
 			App->physics->AddConstraintP2P(*s->phys, *prevSphere->phys, anchorA, anchorB);
 		}
